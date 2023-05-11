@@ -24,8 +24,6 @@ def play_game(filename):
     for letter in word_random:
         letter_list.append(letter)
         blank_list.append('_')
-    print(letter_list)
-    print(blank_list)
 
     guesses = 3
     while guesses > 0:
@@ -35,10 +33,19 @@ def play_game(filename):
             for index in range(len(word_random)):
                 if letter_list[index] == guess:
                     blank_list[index] = guess
+                    fill_in_list = ' '.join(blank_list)
+            print(fill_in_list)
+
+            count = fill_in_list.count('_')
+            print(count)
+            for count in fill_in_list:
+                if count == 0:
+                    print('you won!')
+
         else:
-            guess -= 1
-            print("Incorrect. You have " +
-                  str(guesses) + ' ' + "lives " + "\u2665 "  "left.")
+            guesses -= 1
+            print("Incorrect. You have " + str(guesses) +
+                  ' ' + "lives " + "\u2665 "  "left.")
 
     print("Game Over. The scary dragon wins")
 
