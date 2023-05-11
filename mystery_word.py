@@ -1,4 +1,3 @@
-
 import random
 
 
@@ -19,43 +18,33 @@ def play_game(filename):
         display += ' _'
     print("The mystery word is: " + display)
 
-    display_nested_list = []
-    display_nested_list.append([*display])  # list looks like [[]]
-    print(display_nested_list)
-    display_letter_list = sum(display_nested_list, [])
-    print(display_letter_list)
-    del display_letter_list[::2]
-    print(display_letter_list)
+    letter_list = []
+    blank_list = []
+    for letter in word_random:
+        letter_list.append(letter)
+        blank_list.append('_')
 
-    nested_letter_list = []
-    nested_letter_list.append([*word_random])
-    letter_list_key = sum(nested_letter_list, [])
-
-    letter_list_value = letter_list_key.copy()
-    letters_dictionary = dict(zip(letter_list_key, letter_list_value))
-
-    index_list = []
-    for index in range(len(display_letter_list)):
-        index_list.append(index)
-
-    index_dictionary = dict(zip(index_list, letter_list_key))
-    print(index_dictionary)
-
-    lives = 3
-    while lives > 0:
-        letter = input("guess a letter: ")
+    guesses = 3
+    while guesses > 0:
+        guess = input("guess a letter: ")
         if letter in word_random:
             print('Correct')
-            letter_string = (letters_dictionary[letter])
-            index_value = (index_dictionary[letter_string])
-            display_letter_list.insert(index_value, letter_string)
-            final_string = " ".join(display_letter_list)
-            print(final_string)
+            for index in range(len(word_random)):
+                if letter_list[index] == guess:
+                    blank_list[index] = guess
+                    fill_in_list = ' '.join(blank_list)
+            print(fill_in_list)
+
+            count = fill_in_list.count('_')
+            print(count)
+            for count in fill_in_list:
+                if count == 0:
+                    print('you won!')
 
         else:
-            lives -= 1
-            print("Incorrect. You have " +
-                  str(lives) + ' ' + "lives " + "\u2665 "  "left.")
+            guesses -= 1
+            print("Incorrect. You have " + str(guesses) +
+                  ' ' + "lives " + "\u2665 "  "left.")
 
     print("Game Over. The scary dragon wins")
 
