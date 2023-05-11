@@ -23,19 +23,22 @@ def play_game(filename):
     blank_list = []
     for letter in word_random:
         letter_list.append(letter)
-        blank_list.append(' _')
+        blank_list.append('_')
     print(letter_list)
     print(blank_list)
 
-    lives = 3
-    while lives > 0:
-        letter = input("guess a letter: ")
+    guesses = 3
+    while guesses > 0:
+        guess = input("guess a letter: ")
         if letter in word_random:
             print('Correct')
+            for index in range(len(word_random)):
+                if letter_list[index] == guess:
+                    blank_list[index] = guess
         else:
-            lives -= 1
+            guess -= 1
             print("Incorrect. You have " +
-                  str(lives) + ' ' + "lives " + "\u2665 "  "left.")
+                  str(guesses) + ' ' + "lives " + "\u2665 "  "left.")
 
     print("Game Over. The scary dragon wins")
 
