@@ -55,3 +55,6 @@ import random
  # remove every 2nd element from list (because of space used in display, list was looking like [' ', '_', ' ']). So remove every space
     del display_letter_list[::2]
     print(display_letter_list)  # list now looks like ["_", "_", "_"]
+
+    for index in range(len(letter_list)):
+        print(index)
