@@ -24,28 +24,23 @@ def play_game(filename):
 
     guesses = 3
     while guesses > 0:
-        guess = input("guess a letter: ")
-        if letter not in word_random:
+        letter = input("guess a letter: ")
+        if letter in word_random:
+            print("correct")
+            for index in range(len(word_random)):
+                if word_random[index] == letter:
+                    blank_list[index] = letter
+                    print(' '.join(blank_list))
+
+        else:
             guesses -= 1
             print("Incorrect. You have " + str(guesses) +
                   ' ' + "lives " + "\u2665 "  "left.")
-
-        if letter in word_random:
-            for index in range(len(word_random)):
-                if word_random[index] == guess:
-                    blank_list[index] = guess
-                    print(' '.join(blank_list))
-                    print('Correct')
-    if guesses == 0:
-        print('you lose')
+    # if guesses == 0:
+    #     print('you lose')
 
     print("Game Over. The scary dragon wins")
 
 
 if __name__ == "__main__":
     play_game("words.txt")
-# count = fill_in_list.count('_')
-    # print(count)
-    # for count in fill_in_list:
-    #     if count == 0:
-    #         print('you won!')
