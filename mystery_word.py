@@ -7,6 +7,7 @@ def play_game(filename):
     print("Mission: Protect the city from a scary dragon by correctly guessing each letter in the mystery word")
     print("Rules:")
     print('1. You have 8 lives \u2665')
+    print('2. You only lose a life if you guess a letter incorrectly')
 
     with open(filename) as file:
         word_list = file.read().split()
@@ -20,8 +21,11 @@ def play_game(filename):
 
     display_nested_list = []
     display_nested_list.append([*display])  # list looks like [[]]
+    print(display_nested_list)
     display_letter_list = sum(display_nested_list, [])
+    print(display_letter_list)
     del display_letter_list[::2]
+    print(display_letter_list)
 
     nested_letter_list = []
     nested_letter_list.append([*word_random])
@@ -34,7 +38,8 @@ def play_game(filename):
     for index in range(len(display_letter_list)):
         index_list.append(index)
 
-    index_dictionary = dict(zip(letter_list_key, index_list))
+    index_dictionary = dict(zip(index_list, letter_list_key))
+    print(index_dictionary)
 
     lives = 3
     while lives > 0:
@@ -44,7 +49,8 @@ def play_game(filename):
             letter_string = (letters_dictionary[letter])
             index_value = (index_dictionary[letter_string])
             display_letter_list.insert(index_value, letter_string)
-            print(" ".join(display_letter_list))
+            final_string = " ".join(display_letter_list)
+            print(final_string)
 
         else:
             lives -= 1
