@@ -58,3 +58,11 @@ import random
 
     for index in range(len(letter_list)):
         print(index)
+
+        # display_dictionary = dict(zip(letter_list_key, display_letter_list))
+    # print(display_dictionary)
+
+    correct_index = display_dictionary[letter]
+            display_dictionary[correct_index] = letter
+            print(letter)
+            print(display_dictionary)

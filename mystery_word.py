@@ -22,7 +22,7 @@ def play_game(filename):
     display_nested_list.append([*display])  # list looks like [[]]
     display_letter_list = sum(display_nested_list, [])
     del display_letter_list[::2]
-    print(display_letter_list)
+    # print(display_letter_list)
 
     nested_letter_list = []
     nested_letter_list.append([*word_random])
@@ -32,15 +32,26 @@ def play_game(filename):
     letters_dictionary = dict(zip(letter_list_key, letter_list_value))
     print(letters_dictionary)
 
-    display_dictionary
+    index_list = []
+    for index in range(len(display_letter_list)):
+        index_list.append(index)
+        print(index_list)
+
+    index_dictionary = dict(zip(letter_list_key, index_list))
+    print(index_dictionary)
 
     lives = 3
     while lives > 0:
         letter = input("guess a letter: ")
         if letter in word_random:
             print('Correct')
-            print(display)
-            print(letters_dictionary[letter])
+            letter_string = (letters_dictionary[letter])
+            print(letter_string)
+            index_value = (index_dictionary[letter_string])
+            print(index_value)
+            display_letter_list.insert(index_value, letter_string)
+            print(display_letter_list)
+            .
 
         else:
             lives -= 1
