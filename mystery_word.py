@@ -13,7 +13,7 @@ def choose_level(list1, list2, list3):
     return list_to_randomize
 
 
-def play_game(filename):
+def open_game(filename):
     with open(filename) as file:
         word_list = file.read().split()
 
@@ -22,7 +22,6 @@ def play_game(filename):
     army_dragons_list = []
     list_to_randomize = []
     blank_list = []
-    level = ""
 
     for word in word_list:
         if len(word) <= 6:
@@ -56,38 +55,50 @@ def play_game(filename):
 
     word_random = random.choice(list_to_randomize)
 
-    print(word_random)
-
     for letter in word_random:
         blank_list.append('_')
-    print("The mystery word is: " + " ".join(blank_list))
+    print("The mystery word is " + str(len(word_random)) +
+          " letters " + " ".join(blank_list))
 
     guesses = 3
     while guesses > 0:
 
         letter = input("guess a letter: ")
         if letter in word_random:
-            print("correct")
+            print("Correct")
             for index in range(len(word_random)):
                 if word_random[index] == letter:
                     blank_list[index] = letter
             print(' '.join(blank_list))
+
             if '_' not in blank_list:
-                print("you saved the city!")
+                print("You saved the city!")
                 break
 
         elif letter not in word_random:
             guesses -= 1
-            print("Incorrect. You have " + str(guesses) +
-                  ' ' + "lives " + "\u2665 "  "left.")
-            if guesses == 0:
-                print("\n")
-                print(
-                    "*** GAME OVER. The word was " + word_random.upper() + ". The scary dragons win ***")
-                print("\n")
+            if guesses == 1:
+                print("Incorrect. You have " + str(guesses) +
+                      ' ' + "life " + "\u2665 "  "left.")
+            if guesses > 1:
+                print("Incorrect. You have " + str(guesses) +
+                      ' ' + "lives " + "\u2665 "  "left.")
 
-    play_game(filename)
+            if guesses == 0:
+                print("Incorrect. You have no lives " + "\u2665 "  "left.")
+                if list_to_randomize is one_dragon_list:
+                    print("\n")
+                    print(
+                        "*** GAME OVER. The word was " + word_random.upper() + ". The scary dragon wins ***")
+                    print("\n")
+                else:
+                    print("\n")
+                    print(
+                        "*** GAME OVER. The word was " + word_random.upper() + ". The scary dragons win ***")
+                    print("\n")
+
+    open_game("words.txt")
 
 
 if __name__ == "__main__":
-    play_game("words.txt")
+    open_game("words.txt")
