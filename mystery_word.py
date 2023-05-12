@@ -2,6 +2,17 @@ import sys
 import random
 
 
+def choose_level(list1, list2, list3):
+    level = input("Type 1, 2, or army: ")
+    if level == "1":
+        list_to_randomize = list1
+    elif level == "2":
+        list_to_randomize = list2
+    elif level == "army":
+        list_to_randomize = list3
+    return list_to_randomize
+
+
 def play_game(filename):
     with open(filename) as file:
         word_list = file.read().split()
@@ -40,13 +51,8 @@ def play_game(filename):
     print("How difficult do you want this battle to be?")
     print("Choose to fight 1 dragon, 2 dragons, or an army of dragons.")
 
-    level = input("Type 1, 2, or army: ")
-    if level == "1":
-        list_to_randomize = one_dragon_list
-    elif level == "2":
-        list_to_randomize = two_dragon_list
-    elif level == "army":
-        list_to_randomize = army_dragons_list
+    list_to_randomize = choose_level(
+        one_dragon_list, two_dragon_list, army_dragons_list)
 
     word_random = random.choice(list_to_randomize)
 
