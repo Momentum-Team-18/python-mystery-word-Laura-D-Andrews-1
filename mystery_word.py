@@ -3,35 +3,62 @@ import random
 
 
 def play_game(filename):
+    with open(filename) as file:
+        word_list = file.read().split()
+
+    one_dragon_list = []
+    two_dragon_list = []
+    army_dragons_list = []
+    list_to_randomize = []
+    blank_list = []
+    level = ""
+
+    for word in word_list:
+        if len(word) <= 6:
+            one_dragon_list.append(word)
+        if len(word) > 7 and len(word) <= 8:
+            two_dragon_list.append(word)
+        if len(word) >= 9:
+            army_dragons_list.append(word)
+
     print("Guess The Mystery Word")
     print("Mission: Protect the city from a scary dragon by correctly guessing each letter in the mystery word")
     print("Rules:")
     print('1. You have 8 lives \u2665')
     print('2. You only lose a life if you guess a letter incorrectly')
+
     start_answer = input(
-        "Do you want to accept your mission? Type Y or N: ")
+        "Will you accept this mission? Type Y or N: ")
     if start_answer == "Y":
-        print("**Great! The city needs you. lets play.**")
-    elif start_answer == "N":
+        print("\n")
+        print("**Great! The city needs you. Lets play.**")
+        print("\n")
+    elif start_answer == "N" or start_answer != "Y":
         print("**You must not be the hero the city needs. Come back when you have enough courage.**")
         sys.exit()
 
-    with open(filename) as file:
-        word_list = file.read().split()
-        word_random = random.choice(word_list)
+    print("How difficult do you want this battle to be?")
+    print("Choose to fight 1 dragon, 2 dragons, or an army of dragons.")
+
+    level = input("Type 1, 2, or army: ")
+    if level == "1":
+        list_to_randomize = one_dragon_list
+    elif level == "2":
+        list_to_randomize = two_dragon_list
+    elif level == "army":
+        list_to_randomize = army_dragons_list
+
+    word_random = random.choice(list_to_randomize)
+
     print(word_random)
 
-    display = ''
-    for letter in word_random:
-        display += ' _'
-    print("The mystery word is: " + display)
-
-    blank_list = []
     for letter in word_random:
         blank_list.append('_')
+    print("The mystery word is: " + " ".join(blank_list))
 
     guesses = 3
     while guesses > 0:
+
         letter = input("guess a letter: ")
         if letter in word_random:
             print("correct")
@@ -39,15 +66,19 @@ def play_game(filename):
                 if word_random[index] == letter:
                     blank_list[index] = letter
             print(' '.join(blank_list))
+            if '_' not in blank_list:
+                print("you saved the city!")
+                break
 
-        else:
+        elif letter not in word_random:
             guesses -= 1
             print("Incorrect. You have " + str(guesses) +
                   ' ' + "lives " + "\u2665 "  "left.")
-    # if guesses == 0:
-    #     print('you lose')
-
-    print("Game Over. The scary dragon wins")
+            if guesses == 0:
+                print("\n")
+                print(
+                    "*** GAME OVER. The word was " + word_random.upper() + ". The scary dragons win ***")
+                print("\n")
 
     play_game(filename)
 
