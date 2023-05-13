@@ -1,7 +1,6 @@
 import sys
 import random
 
-
 def choose_level(list1, list2, list3):
     level = input("Type 1, 2, or army: ")
     if level == "1":
@@ -12,6 +11,13 @@ def choose_level(list1, list2, list3):
         list_to_randomize = list3
     return list_to_randomize
 
+def intro_game_text(filename):
+    with open(filename) as file:
+        file.readlines()
+
+def in_game_text(filename):
+    with open(filename) as file:
+        file.readline()
 
 def open_game(filename):
     with open(filename) as file:
@@ -31,24 +37,20 @@ def open_game(filename):
         if len(word) >= 9:
             army_dragons_list.append(word)
 
-    print("Guess The Mystery Word")
-    print("Mission: Protect the city from a scary dragon by correctly guessing each letter in the mystery word")
-    print("Rules:")
-    print('1. You have 8 lives \u2665')
-    print('2. You only lose a life if you guess a letter incorrectly')
+    print(intro_game_text("read.txt"))
 
     start_answer = input(
         "Will you accept this mission? Type Y or N: ")
     if start_answer == "Y":
         print("\n")
-        print("**Great! The city needs you. Lets play.**")
+        print(in_game_text("read2.txt"))
         print("\n")
     elif start_answer == "N" or start_answer != "Y":
-        print("**You must not be the hero the city needs. Come back when you have enough courage.**")
+        print(in_game_text("read2.txt"))
         sys.exit()
 
-    print("How difficult do you want this battle to be?")
-    print("Choose to fight 1 dragon, 2 dragons, or an army of dragons.")
+    print(in_game_text("read2.txt"))
+    print(in_game_text("read2.txt"))
 
     list_to_randomize = choose_level(
         one_dragon_list, two_dragon_list, army_dragons_list)
