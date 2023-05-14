@@ -1,0 +1,70 @@
+Rules: 
+Rules: 
+1. 8 guesses allowed - remind user how many guesses they have left
+2. A guess is only used if user guesses an incorrect letter
+3. If same letter is guessed twice don't take away a guess
+4. if guess letter twice - print a message letting them know they;ve guessed it twice
+5. Game end - user guesses word or runs out of guesses
+6. Word is revealed if user runs out of guesses 
+
+Game flow: 
+1. start - letter user know how many letters secret word contains
+2. one guess per round - upper/lowercase doesn't matter
+3. if puts in more than more letter - print message about invalid input
+4. let user know if their guess appears
+5. display partially guessed word and blanks for letters not yet guesses
+
+Spicy additions: 
+1. let user choose level of difficulty 
+2. ask user if they want to play again at end
+3. install colorama package to add colors to terminal 
+
+Plan: break into individual parts
+1. import - list of words
+2. export - a guessing Game
+3. create a read function to open and read file
+4. display word - display blank letters of word - that changes when they guess letters correctly
+4. need a way for user to input
+7. a way to limit the number of guess 
+8. tells if guess is wrong or right
+9. function to choose a random word
+10. prevent user from putting invalid input - more than one letter or invalid character, guess same letter twice 
+
+word(letter for each position) with another list of _ _ _ ? Guess part is most important
+prompting user and getting input
+make list with # and word. Use random # selector
+
+def play_game(filename)
+
+word_list = file.read().split()
+random_word = random.choice(word_list)
+for word in random_word: 
+display += ' _ '
+print(display)
+
+import random
+
+
+
+
+
+ # display_nested_list = []
+    # display_nested_list.append([*display])  # list looks like [[]]
+    # display_letter_list = sum(display_nested_list, [])
+    # print(display_letter_list)  
+ # remove every 2nd element from list (because of space used in display, list was looking like [' ', '_', ' ']). So remove every space
+    del display_letter_list[::2]
+    print(display_letter_list)  # list now looks like ["_", "_", "_"]
+
+    for index in range(len(letter_list)):
+        print(index)
+
+        # display_dictionary = dict(zip(letter_list_key, display_letter_list))
+    # print(display_dictionary)
+
+    correct_index = display_dictionary[letter]
+            display_dictionary[correct_index] = letter
+            print(letter)
+            print(display_dictionary)
+
+            # print(final_string.replace(str(index_value), letter_string))

@@ -1,0 +1,5 @@
+Guess The Mystery Word
+Mission: Protect the city from a scary dragon by correctly guessing each letter in the mystery word
+Rules:
+1. You have 8 lives \u2665
+2. You only lose a life if you guess a letter incorrectly
