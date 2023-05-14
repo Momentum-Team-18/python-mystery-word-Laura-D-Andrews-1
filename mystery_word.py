@@ -1,6 +1,7 @@
 import sys
 import random
 
+
 def choose_level(list1, list2, list3):
     level = input("Type 1, 2, or army: ")
     if level == "1":
@@ -11,13 +12,16 @@ def choose_level(list1, list2, list3):
         list_to_randomize = list3
     return list_to_randomize
 
+
 def intro_game_text(filename):
     with open(filename) as file:
         file.readlines()
 
+
 def in_game_text(filename):
     with open(filename) as file:
         file.readline()
+
 
 def open_game(filename):
     with open(filename) as file:
@@ -62,7 +66,7 @@ def open_game(filename):
     print("The mystery word is " + str(len(word_random)) +
           " letters " + " ".join(blank_list))
 
-    guesses = 3
+    guesses = 8
     while guesses > 0:
 
         letter = input("guess a letter: ")
