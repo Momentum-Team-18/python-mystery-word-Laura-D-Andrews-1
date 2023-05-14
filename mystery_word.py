@@ -13,9 +13,11 @@ def choose_level(list1, list2, list3):
     return list_to_randomize
 
 
-def intro_game_text(filename):
-    with open(filename) as file:
-        file.readlines()
+file = open("read.txt")
+read_file = file.read()
+
+file = open("read2.txt")
+read_file2 = file.read()
 
 
 def in_game_text(filename):
@@ -41,20 +43,21 @@ def open_game(filename):
         if len(word) >= 9:
             army_dragons_list.append(word)
 
-    print(intro_game_text("read.txt"))
+    print(read_file)
+    file.close()
 
     start_answer = input(
         "Will you accept this mission? Type Y or N: ")
     if start_answer == "Y":
         print("\n")
-        print(in_game_text("read2.txt"))
+        print("**Great! The city needs you. Lets play.**")
         print("\n")
     elif start_answer == "N" or start_answer != "Y":
-        print(in_game_text("read2.txt"))
+        print("**You must not be the hero the city needs. Come back when you have enough courage.**")
         sys.exit()
 
-    print(in_game_text("read2.txt"))
-    print(in_game_text("read2.txt"))
+    print(read_file2)
+    file.close()
 
     list_to_randomize = choose_level(
         one_dragon_list, two_dragon_list, army_dragons_list)
@@ -80,6 +83,9 @@ def open_game(filename):
             if '_' not in blank_list:
                 print("You saved the city!")
                 break
+
+        elif (len(letter) > 1):
+            print("only guess 1 letter at a time")
 
         elif letter not in word_random:
             guesses -= 1
