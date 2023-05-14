@@ -20,11 +20,6 @@ file = open("read2.txt")
 read_file2 = file.read()
 
 
-def in_game_text(filename):
-    with open(filename) as file:
-        file.readline()
-
-
 def open_game(filename):
     with open(filename) as file:
         word_list = file.read().split()
