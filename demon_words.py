@@ -78,12 +78,12 @@ def open_game(filename):
             print(word_random)
             for letter in word_random:
                 blank_list.append('_')
-                
+
             letter = input("guess a letter: ")
             if letter in word_random:
                 print("Correct")
-                for letter in word_random:
-                    blank_list.append('_')
+                # for letter in word_random:
+                #     blank_list.append('_')
                 for index in range(len(word_random)):
                     if word_random[index] == letter:
                         blank_list[index] = letter
